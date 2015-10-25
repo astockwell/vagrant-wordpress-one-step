@@ -51,7 +51,7 @@ if [[ $ping_result == *bytes?from* ]]; then
     # sendmailconfig
 
     echo postfix postfix/main_mailer_type select Internet Site | debconf-set-selections
-    echo postfix postfix/mailname string wpos | debconf-set-selections
+    echo postfix postfix/mailname string wpdev | debconf-set-selections
     apt-get install -y postfix
 
     sed -i "s/# gzip_types/gzip_types/g" /etc/nginx/nginx.conf
@@ -118,7 +118,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.network :private_network, ip: "10.0.5.4"
 
-  config.vm.hostname = "wpos"
+  config.vm.hostname = "wpdev"
 
   config.ssh.forward_agent = true
 
