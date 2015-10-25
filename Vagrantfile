@@ -51,7 +51,7 @@ if [[ $ping_result == *bytes?from* ]]; then
     # sendmailconfig
 
     echo postfix postfix/main_mailer_type select Internet Site | debconf-set-selections
-    echo postfix postfix/mailname string vvv | debconf-set-selections
+    echo postfix postfix/mailname string wpos | debconf-set-selections
     apt-get install -y postfix
 
     sed -i "s/# gzip_types/gzip_types/g" /etc/nginx/nginx.conf
@@ -118,14 +118,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.network :private_network, ip: "10.0.5.4"
 
-  config.vm.hostname = "vvv"
+  config.vm.hostname = "wpos"
 
   config.ssh.forward_agent = true
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
-  config.vm.provider :virtualbox do |vb|
+  config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", "512"]
     vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
     vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
