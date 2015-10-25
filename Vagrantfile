@@ -133,6 +133,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   if defined? VagrantPlugins::HostsUpdater
     config.hostsupdater.aliases = [site_slug]
+    config.hostsupdater.remove_on_suspend = true
   end
 
   config.vm.provision :shell, :inline => $script
